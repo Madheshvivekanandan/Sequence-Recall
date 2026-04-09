@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sequence Recall</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=2">
+</head>
+<body>
+    <div class="game-container">
+        <header class="hero">
+            <p class="eyebrow">Memory Arcade</p>
+            <h1>Sequence Recall</h1>
+            <p class="subtitle">Watch the full pattern, hold it in your head, and repeat it exactly. One wrong tap ends the run.</p>
+            <div class="stats">
+                <div class="stat-box">Round: <span id="round">1</span></div>
+                <div class="stat-box">Score: <span id="score">0</span></div>
+            </div>
+            <p id="status-message">Press Start to play!</p>
+        </header>
+
+        <main class="board-stage">
+            <div class="board-shell">
+                <div class="board-core"></div>
+                <div class="simon-grid">
+                    <div class="simon-btn green" data-color="green"></div>
+                    <div class="simon-btn red" data-color="red"></div>
+                    <div class="simon-btn yellow" data-color="yellow"></div>
+                    <div class="simon-btn blue" data-color="blue"></div>
+                </div>
+                <p class="board-hint">The game replays the entire sequence every round.</p>
+            </div>
+            
+            <div class="controls">
+                <button id="start-btn" class="btn primary">Start Game</button>
+            </div>
+        </main>
+        
+        <div id="game-over-overlay" class="overlay hidden">
+            <div class="overlay-content form-glass">
+                <h2>Game Over!</h2>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <p>Reached Round: <span id="final-round">1</span></p>
+                <button id="restart-btn" class="btn primary">Play Again</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/app.js?v=3"></script>
+</body>
+</html>
