@@ -79,7 +79,7 @@ async function startGame() {
         currentSequenceLength = data.sequence.length;
         
         setTimeout(() => {
-            playComputerSequence(data.sequence);
+            playNewColor(data.new_cell);
         }, 800);
         
     } catch (e) {
@@ -98,7 +98,7 @@ async function nextRound() {
         statusMsg.textContent = "Computer's turn...";
         
         setTimeout(() => {
-            playComputerSequence(data.sequence);
+            playNewColor(data.new_cell);
         }, 800);
         
     } catch (e) {
@@ -149,22 +149,10 @@ async function flashButtonAsync(color) {
     btn.classList.remove('flashing');
 }
 
-async function playComputerSequence(sequence) {
-    if (!sequence || !sequence.length) {
-        startPlayerTurn();
-        return;
-    }
-
-    // Give a brief moment before starting just in case the UI is still settling
+async function playNewColor(color) {
     await sleep(300);
     clearAllHighlights();
-
-    for (let i = 0; i < sequence.length; i++) {
-        await flashButtonAsync(sequence[i]);
-        // Delay between flashes
-        await sleep(250);
-    }
-
+    await flashButtonAsync(color);
     startPlayerTurn();
 }
 
@@ -172,7 +160,7 @@ function startPlayerTurn() {
     isPlayerTurn = true;
     playerInputSequence = [];
     simonGrid.classList.remove('disabled');
-    statusMsg.textContent = "Your turn! Repeat the whole sequence.";
+    statusMsg.textContent = `Your turn! Enter all ${currentSequenceLength} color(s) from memory.`;
 }
 
 function stopPlayerTurn() {
